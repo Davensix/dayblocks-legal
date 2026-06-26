@@ -8,18 +8,38 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", Roboto, sans-serif;
       font-size: 16px;
       line-height: 1.7;
       color: #222;
       background: #fafafa;
-      padding: 48px 24px 80px;
+      padding: 32px 24px 80px;
     }
 
-    .wrap {
-      max-width: 700px;
-      margin: 0 auto;
+    .wrap { max-width: 700px; margin: 0 auto; }
+
+    .lang-switch {
+      display: flex;
+      gap: 4px;
+      justify-content: flex-end;
+      margin-bottom: 28px;
     }
+
+    .lang-switch button {
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: #888;
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .lang-switch button:hover { color: #222; border-color: #bbb; }
+    .lang-switch button.active { color: #fff; background: #0066cc; border-color: #0066cc; }
 
     .app-name {
       font-size: 13px;
@@ -30,100 +50,209 @@
       margin-bottom: 12px;
     }
 
-    h1 {
-      font-size: 28px;
-      font-weight: 700;
-      line-height: 1.25;
-      margin-bottom: 6px;
-    }
+    h1 { font-size: 28px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+    .meta { font-size: 14px; color: #888; margin-bottom: 40px; }
+    h2 { font-size: 18px; font-weight: 600; margin-top: 36px; margin-bottom: 10px; }
+    p { margin-bottom: 14px; }
+    ul { margin: 0 0 14px 20px; }
+    li { margin-bottom: 6px; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid #e0e0e0; margin: 40px 0; }
 
-    .meta {
-      font-size: 14px;
-      color: #888;
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-top: 36px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin-bottom: 14px;
-    }
-
-    ul {
-      margin: 0 0 14px 20px;
-    }
-
-    li {
-      margin-bottom: 6px;
-    }
-
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #e0e0e0;
-      margin: 40px 0;
-    }
+    [data-lang] { display: none; }
+    [data-lang].visible { display: block; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="app-name">DayBlocks</p>
-    <h1>Privacy policy</h1>
-    <p class="meta">Last updated: May 5, 2026</p>
+    <div class="lang-switch">
+      <button data-set="en">English</button>
+      <button data-set="de">Deutsch</button>
+      <button data-set="ja">日本語</button>
+    </div>
 
-    <p>DayBlocks is built with privacy in mind. This policy explains what data the app accesses and how it's used.</p>
+    <!-- ENGLISH -->
+    <div data-lang="en">
+      <p class="app-name">DayBlocks</p>
+      <h1>Privacy policy</h1>
+      <p class="meta">Last updated: June 26, 2026</p>
 
-    <h2>What data we access</h2>
-    <p>When you grant calendar permission, DayBlocks reads the following from your device's calendar database:</p>
-    <ul>
-      <li>Event titles</li>
-      <li>Event dates and times</li>
-      <li>Calendar names</li>
-    </ul>
+      <p>DayBlocks is built with privacy in mind. This policy explains what data the app accesses and how it's used.</p>
 
-    <h2>What we do with it</h2>
-    <p>Calendar data is read directly from your device and used solely to display upcoming event countdowns inside the DayBlocks app and its home screen widget. Nothing is transmitted off your device as part of normal app operation.</p>
+      <h2>What data we access</h2>
+      <p>When you grant calendar and reminders permission, DayBlocks reads the following from your device's calendar and reminders databases:</p>
+      <ul>
+        <li>Event and reminder titles</li>
+        <li>Event and reminder dates and times</li>
+        <li>Calendar and reminder list names</li>
+      </ul>
+      <p>Granting reminders access is optional. If you decline it, DayBlocks works normally and simply shows nothing from your reminders.</p>
 
-    <h2>What we don't do</h2>
-    <ul>
-      <li>No servers — your calendar data never leaves your device</li>
-      <li>No off-device storage of any kind</li>
-      <li>No modification of your events</li>
-      <li>No sharing with third parties</li>
-      <li>No personal analytics or behavioral tracking</li>
-      <li>No account required</li>
-    </ul>
+      <h2>What we do with it</h2>
+      <p>Calendar and reminder data is read directly from your device and used solely to display upcoming countdowns inside the DayBlocks app and its home screen and lock screen widgets. Nothing is transmitted off your device as part of normal app operation.</p>
 
-    <h2>Crash reporting</h2>
-    <p>DayBlocks uses <a href="https://sentry.io">Sentry</a> to collect anonymized crash reports and diagnostic information. Before any report is sent, calendar event titles and other personal data are scrubbed from the payload. Sentry receives only technical information such as the error type, stack trace, device model, and iOS version — nothing that identifies you or your calendar content.</p>
-    <p>This data is used exclusively to find and fix bugs. It falls under Apple's "Crash Data" diagnostics category and is not linked to your identity.</p>
+      <h2>What we don't do</h2>
+      <ul>
+        <li>No servers — your calendar and reminder data never leaves your device</li>
+        <li>No off-device storage of any kind</li>
+        <li>No modification of your events or reminders</li>
+        <li>No sharing with third parties</li>
+        <li>No personal analytics or behavioral tracking</li>
+        <li>No account required</li>
+      </ul>
 
-    <h2>Your control</h2>
-    <p>You can revoke calendar access at any time by going to <strong>iOS Settings → Privacy &amp; Security → Calendars → DayBlocks</strong> and toggling it off. The app will continue to run without calendar access but will have nothing to display.</p>
+      <h2>Crash reporting</h2>
+      <p>DayBlocks uses <a href="https://sentry.io">Sentry</a> to collect anonymized crash reports and diagnostic information. Before any report is sent, event and reminder titles and other personal data are scrubbed from the payload. Sentry receives only technical information such as the error type, stack trace, device model, and iOS version — nothing that identifies you or your calendar and reminder content.</p>
+      <p>This data is used exclusively to find and fix bugs. It falls under Apple's "Crash Data" diagnostics category and is not linked to your identity.</p>
 
-    <h2>Children's privacy</h2>
-    <p>DayBlocks is not directed to children under the age of 13 and does not knowingly collect any information from children.</p>
+      <h2>Your control</h2>
+      <p>You can revoke calendar or reminders access at any time in <strong>iOS Settings → Privacy &amp; Security → Calendars</strong> and <strong>Reminders → DayBlocks</strong> by toggling them off. The app will continue to run without this access but will have nothing to display.</p>
 
-    <h2>Changes to this policy</h2>
-    <p>If this policy changes, the updated date at the top of this page will reflect the revision. Continued use of the app after changes are posted constitutes acceptance of the updated policy.</p>
+      <h2>Children's privacy</h2>
+      <p>DayBlocks is not directed to children under the age of 13 and does not knowingly collect any information from children.</p>
 
-    <hr>
+      <h2>Changes to this policy</h2>
+      <p>If this policy changes, the updated date at the top of this page will reflect the revision. Continued use of the app after changes are posted constitutes acceptance of the updated policy.</p>
 
-    <h2>Contact</h2>
-    <p>Questions about privacy? Email <a href="mailto:sundogapp@gmail.com">sundogapp@gmail.com</a>.</p>
+      <hr>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy? Email <a href="mailto:sundogapp@gmail.com">sundogapp@gmail.com</a>.</p>
+    </div>
+
+    <!-- GERMAN -->
+    <div data-lang="de">
+      <p class="app-name">DayBlocks</p>
+      <h1>Datenschutzrichtlinie</h1>
+      <p class="meta">Zuletzt aktualisiert: 26. Juni 2026</p>
+
+      <p>DayBlocks wurde mit Blick auf den Datenschutz entwickelt. Diese Richtlinie erklärt, auf welche Daten die App zugreift und wie sie verwendet werden.</p>
+
+      <h2>Auf welche Daten wir zugreifen</h2>
+      <p>Wenn du die Berechtigung für Kalender und Erinnerungen erteilst, liest DayBlocks Folgendes aus den Kalender- und Erinnerungs-Datenbanken deines Geräts:</p>
+      <ul>
+        <li>Titel von Terminen und Erinnerungen</li>
+        <li>Daten und Uhrzeiten von Terminen und Erinnerungen</li>
+        <li>Namen von Kalendern und Erinnerungslisten</li>
+      </ul>
+      <p>Die Berechtigung für Erinnerungen ist optional. Wenn du sie ablehnst, funktioniert DayBlocks normal und zeigt einfach nichts aus deinen Erinnerungen an.</p>
+
+      <h2>Was wir damit machen</h2>
+      <p>Kalender- und Erinnerungsdaten werden direkt von deinem Gerät gelesen und ausschließlich dazu verwendet, anstehende Countdowns in der DayBlocks-App und in den Widgets für Home- und Sperrbildschirm anzuzeigen. Im normalen Betrieb der App wird nichts von deinem Gerät übertragen.</p>
+
+      <h2>Was wir nicht machen</h2>
+      <ul>
+        <li>Keine Server – deine Kalender- und Erinnerungsdaten verlassen niemals dein Gerät</li>
+        <li>Keine Speicherung außerhalb deines Geräts, in keiner Form</li>
+        <li>Keine Änderung deiner Termine oder Erinnerungen</li>
+        <li>Keine Weitergabe an Dritte</li>
+        <li>Keine personenbezogene Analyse oder Verhaltens-Tracking</li>
+        <li>Kein Konto erforderlich</li>
+      </ul>
+
+      <h2>Absturzberichte</h2>
+      <p>DayBlocks verwendet <a href="https://sentry.io">Sentry</a>, um anonymisierte Absturzberichte und Diagnoseinformationen zu erfassen. Bevor ein Bericht gesendet wird, werden Titel von Terminen und Erinnerungen sowie andere personenbezogene Daten aus den Daten entfernt. Sentry erhält nur technische Informationen wie Fehlertyp, Stack-Trace, Gerätemodell und iOS-Version – nichts, was dich oder deine Kalender- und Erinnerungsinhalte identifiziert.</p>
+      <p>Diese Daten werden ausschließlich verwendet, um Fehler zu finden und zu beheben. Sie fallen unter Apples Diagnosekategorie „Absturzdaten" und werden nicht mit deiner Identität verknüpft.</p>
+
+      <h2>Deine Kontrolle</h2>
+      <p>Du kannst den Zugriff auf Kalender oder Erinnerungen jederzeit widerrufen, indem du in <strong>iOS-Einstellungen → Datenschutz &amp; Sicherheit → Kalender</strong> und <strong>Erinnerungen → DayBlocks</strong> den jeweiligen Schalter deaktivierst. Die App läuft auch ohne diesen Zugriff weiter, hat dann aber nichts anzuzeigen.</p>
+
+      <h2>Datenschutz für Kinder</h2>
+      <p>DayBlocks richtet sich nicht an Kinder unter 13 Jahren und erhebt wissentlich keine Informationen von Kindern.</p>
+
+      <h2>Änderungen dieser Richtlinie</h2>
+      <p>Wenn sich diese Richtlinie ändert, wird das Datum oben auf dieser Seite entsprechend aktualisiert. Die weitere Nutzung der App nach Veröffentlichung von Änderungen gilt als Zustimmung zur aktualisierten Richtlinie.</p>
+
+      <hr>
+
+      <h2>Kontakt</h2>
+      <p>Fragen zum Datenschutz? Schreib eine E-Mail an <a href="mailto:sundogapp@gmail.com">sundogapp@gmail.com</a>.</p>
+    </div>
+
+    <!-- JAPANESE -->
+    <div data-lang="ja">
+      <p class="app-name">DayBlocks</p>
+      <h1>プライバシーポリシー</h1>
+      <p class="meta">最終更新日: 2026年6月26日</p>
+
+      <p>DayBlocks はプライバシーに配慮して開発されています。このポリシーでは、アプリがどのようなデータにアクセスし、どのように使用するかを説明します。</p>
+
+      <h2>アクセスするデータ</h2>
+      <p>カレンダーおよびリマインダーのアクセス許可を与えると、DayBlocks はお使いのデバイスのカレンダーおよびリマインダーのデータベースから以下を読み取ります:</p>
+      <ul>
+        <li>イベントおよびリマインダーのタイトル</li>
+        <li>イベントおよびリマインダーの日付と時刻</li>
+        <li>カレンダーおよびリマインダーリストの名前</li>
+      </ul>
+      <p>リマインダーへのアクセス許可は任意です。許可しない場合でも DayBlocks は通常どおり動作し、リマインダーの内容が表示されないだけです。</p>
+
+      <h2>データの用途</h2>
+      <p>カレンダーおよびリマインダーのデータはお使いのデバイスから直接読み取られ、DayBlocks アプリおよびホーム画面・ロック画面のウィジェットで今後の予定までのカウントダウンを表示するためにのみ使用されます。アプリの通常の動作において、デバイスの外部に送信されるものは一切ありません。</p>
+
+      <h2>行わないこと</h2>
+      <ul>
+        <li>サーバーなし — カレンダーおよびリマインダーのデータがデバイスの外に出ることはありません</li>
+        <li>デバイス外への保存は一切行いません</li>
+        <li>イベントやリマインダーを変更することはありません</li>
+        <li>第三者への共有は行いません</li>
+        <li>個人を対象とした分析や行動トラッキングは行いません</li>
+        <li>アカウントは不要です</li>
+      </ul>
+
+      <h2>クラッシュレポート</h2>
+      <p>DayBlocks は匿名化されたクラッシュレポートおよび診断情報を収集するために <a href="https://sentry.io">Sentry</a> を使用しています。レポートが送信される前に、イベントやリマインダーのタイトルおよびその他の個人データはデータから除去されます。Sentry が受け取るのは、エラーの種類、スタックトレース、デバイスのモデル、iOS のバージョンなどの技術的な情報のみであり、あなた自身やカレンダー・リマインダーの内容を特定できる情報は含まれません。</p>
+      <p>このデータはバグの発見と修正のためにのみ使用されます。これは Apple の診断カテゴリ「クラッシュデータ」に該当し、あなたの身元と紐付けられることはありません。</p>
+
+      <h2>あなたの管理</h2>
+      <p><strong>iOS の設定 → プライバシーとセキュリティ → カレンダー</strong> および <strong>リマインダー → DayBlocks</strong> でスイッチをオフにすることで、カレンダーやリマインダーへのアクセスをいつでも取り消すことができます。アクセスがなくてもアプリは引き続き動作しますが、表示できる内容はなくなります。</p>
+
+      <h2>子供のプライバシー</h2>
+      <p>DayBlocks は13歳未満の子供を対象としておらず、子供から意図的に情報を収集することはありません。</p>
+
+      <h2>本ポリシーの変更</h2>
+      <p>本ポリシーが変更された場合、このページ上部の更新日に反映されます。変更が掲載された後もアプリを継続して使用された場合、更新されたポリシーに同意したものとみなされます。</p>
+
+      <hr>
+
+      <h2>お問い合わせ</h2>
+      <p>プライバシーに関するご質問は <a href="mailto:sundogapp@gmail.com">sundogapp@gmail.com</a> までメールでお問い合わせください。</p>
+    </div>
   </div>
+
+  <script>
+    (function () {
+      var supported = ['en', 'de', 'ja'];
+
+      function pick() {
+        var param = new URLSearchParams(location.search).get('lang');
+        if (param && supported.indexOf(param) !== -1) return param;
+        var langs = navigator.languages || [navigator.language || 'en'];
+        for (var i = 0; i < langs.length; i++) {
+          var base = langs[i].toLowerCase().split('-')[0];
+          if (supported.indexOf(base) !== -1) return base;
+        }
+        return 'en';
+      }
+
+      function show(lang) {
+        document.querySelectorAll('[data-lang]').forEach(function (el) {
+          el.classList.toggle('visible', el.getAttribute('data-lang') === lang);
+        });
+        document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+          btn.classList.toggle('active', btn.getAttribute('data-set') === lang);
+        });
+        document.documentElement.lang = lang;
+      }
+
+      document.querySelectorAll('.lang-switch button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          show(btn.getAttribute('data-set'));
+        });
+      });
+
+      show(pick());
+    })();
+  </script>
 </body>
 </html>
